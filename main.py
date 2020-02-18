@@ -1,63 +1,42 @@
-import os
-liste = []
 
 
-from pathlib import Path
+def repertoire(rep):
+    import os
+    liste = []
+    liste1 = []
+    liste2 = []
+    liste3 = []
+    liste4 = []
 
-p = Path('F:\X-plo\maket')
+    from pathlib import Path
 
-for f in list(p.glob('**/*.txt')):
-    liste1 = [f]
+    p = Path(rep)
 
-for f in list(p.glob('**/*.jpg')):
+    for f in list(p.glob('**/*.txt')):
+        liste1 += [f]
 
-    os.environ['CLASSPATH'] = "/path/to/tika-app.jar"
+    for f in list(p.glob('**/*.jpg')):
+        liste2 += [f]
 
-    from jnius import autoclass
+    for f in list(p.glob('**/*.odt')):
+        liste3 += [f]
 
+    for f in list(p.glob('**/*.docx')):
+        liste4 += [f]
 
-    Tika = autoclass('org.apache.tika.Tika')
-    Metadata = autoclass('org.apache.tika.metadata.Metadata')
-    FileInputStream = autoclass('java.io.FileInputStream')
+    liste = liste1 + liste2 + liste3 + liste4
 
-    tika = Tika()
-    meta = Metadata()
-    text = tika.parseToString(FileInputStream(f), meta)
-    liste2 = [text]
-
-for f in list(p.glob('**/*.odt')):
-
-
-    os.environ['CLASSPATH'] = "/path/to/tika-app.jar"
-
-    from jnius import autoclass
-
-    Tika = autoclass('org.apache.tika.Tika')
-    Metadata = autoclass('org.apache.tika.metadata.Metadata')
-    FileInputStream = autoclass('java.io.FileInputStream')
-
-    tika = Tika()
-    meta = Metadata()
-    text = tika.parseToString(FileInputStream(f), meta)
-    liste3 = [text]
-
-for f in list(p.glob('**/*.docx')):
+    return liste
 
 
-    os.environ['CLASSPATH'] = "/path/to/tika-app.jar"
-
-    from jnius import autoclass
-
-    Tika = autoclass('org.apache.tika.Tika')
-    Metadata = autoclass('org.apache.tika.metadata.Metadata')
-    FileInputStream = autoclass('java.io.FileInputStream')
-
-    tika = Tika()
-    meta = Metadata()
-    text = tika.parseToString(FileInputStream(f), meta)
-    liste4 = [text]
-
-liste = liste1 + liste2 + liste3 + liste4
-print (liste)
+def X():
+    liste = repertoire(rep)
+    X = len(liste)-1
+    return X
 
 
+#main
+rep = 'C:/Users/Louis programmation/X-plo/maket/'
+
+print(X())
+print(repertoire(rep))
