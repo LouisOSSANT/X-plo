@@ -1,18 +1,21 @@
+import os
+liste = []
 
+
+from pathlib import Path
 
 def repertoire(rep):
+    """convertir les fichiers jpg odt et docx en txt"""
     import os
-    liste = []
     liste1 = []
     liste2 = []
     liste3 = []
     liste4 = []
 
-    from pathlib import Path
-
     p = Path(rep)
 
     for f in list(p.glob('**/*.txt')):
+        #definir f pour qu'il n'y ai plus le chemin mais que le fichier texte 
         liste1 += [f]
 
     for f in list(p.glob('**/*.jpg')):
@@ -35,10 +38,23 @@ def X():
     return X
 
 def doc_etud(n):
+    """enlever le chemin pr n'avoir que le nom du fichier"""
     liste = repertoire(rep)
     doc_etud = liste[n]
     return doc_etud
 
+def cherche_mot(doc):
+    doc = doc_etud(n)
+    fichier = open(doc,"rt",encoding = "utf8")
+    for lignes in fichier:
+        trouver = False
+        if mot in lignes:
+            trouver = True
+            return trouver
+        else:
+            trouver = False
+            return trouver
+    fichier.close()
 
 
 
@@ -48,6 +64,8 @@ def doc_etud(n):
 
 n = 0
 rep = 'C:/Users/mot Louis programmation/X-plo/maket/'
+
+
 
 mot = input("quelle mot chercher vous ? :")
 repertoire = repertoire(rep)
@@ -60,4 +78,7 @@ while n < X-1:
         print(phrase_du_mot())
         n = n + 1
     else:
-        n = n + 1 
+        n = n + 1
+
+
+
